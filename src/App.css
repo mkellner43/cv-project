@@ -1,38 +1,94 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: Inter, sans-serif;
+  box-sizing: border-box;
+}
+#root {
+  display: flex;
+  justify-content: center;
+}
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  width: 70%;
+  background-color: #EAEDED;
+  height: 100%;
+}
+html{
+  background-color: #D5D8DC;
+}
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 150px;
+  background-color: #D5D8DC;
+  width: 100%;
+}
+.header > i, 
+.header > h1 {
+  padding: 0.5rem;
+}
+.general-info {
+  display: flex;
+  position: relative;
+  width: 100%;
+  padding: 5em;
+  height: 430px;
+  border-radius: 1rem;
+}
+.textLabel {
+  padding: 0.4rem 0rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  font-size: 20px;
+  background-color: inherit;
 }
 
-.App-link {
-  color: #61dafb;
+input.name:focus {
+  border: 1px solid black;
+  padding: 0.325rem 0rem;
+  outline: none;
+  width: 12rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+input.textLabel:focus {
+  border: 1px solid black;
+  padding: 0.33rem 0rem;
+  outline: none;
+  width: 12rem;
+}
+
+input.name:focus,
+h2.name {
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.general-info--right {
+  position: absolute;
+  left: 70rem;
+}
+.general-info--right {
+  position: absolute;
+}
+h2.textLabel {
+  font-weight: 700;
+  font-size: 25px;
+}
+.general-info--hr {
+  position: absolute;
+  width: 90%;
+  top: 24rem;
+  left: 4rem;
+  right: 4rem;
+  border: 2px dashed black;
+}
+.education {
+  position: relative;
+
 }
