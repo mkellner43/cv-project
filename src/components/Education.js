@@ -135,12 +135,14 @@ class Education extends Component {
     </div>
       
       <div className="form--buttons">
-        <button className="button" onClick={this.handleSubmit}><i className="fa-solid fa-circle-plus button--icon"></i>Save</button>
-        <button className="button" onClick={this.handleAbort}><i className="fa-solid fa-ban button--icon"></i>Cancel</button>
+        <button className="button--add" onClick={this.handleSubmit}><i className="fa-solid fa-circle-plus button--icon"></i>Save</button>
+        <button className="button--cancel" onClick={this.handleAbort}><i className="fa-solid fa-ban button--icon"></i>Cancel</button>
       </div>
     </form>
     :
-    <button className="button" onClick={this.openForm}><i className="fa-solid fa-circle-plus button--icon"></i>Add</button>
+    <div className="add--btn">
+      <button className="button--add" onClick={this.openForm}><i className="fa-solid fa-circle-plus button--icon"></i>Add</button>
+    </div>
     return content
   }
 

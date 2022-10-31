@@ -51,39 +51,47 @@ html{
   font-weight: 500;
   font-size: 20px;
   background-color: inherit;
+  width: 13rem;
+  height: 3rem;
+  margin: 0;
 }
-
 input.name:focus {
-  border: 1px solid black;
-  padding: 0.325rem 0rem;
   outline: none;
   width: 12rem;
+  margin-top: -4px;
+  margin-left: -20px;
+  margin-bottom: 4px;
+  font-size: 25px;
+  font-weight: 700;
 }
 
 input.textLabel:focus {
-  border: 1px solid black;
-  padding: 0.33rem 0rem;
   outline: none;
   width: 12rem;
-}
-
-input.name:focus,
-h2.name {
-  font-size: 25px;
-  font-weight: 700;
+  margin-top: -4px;
+  margin-left: -20px;
+  margin-bottom: 4px;
+  height: 3rem;
 }
 
 h2.textLabel {
   font-weight: 700;
   font-size: 25px;
 }
-
+.general-info--left,
+.general-info--right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: left;
+}
 .education,
 .work-experience,
 .skills {
   display: flex;
   flex-direction: column;
   position: relative;
+  align-items: center;
   width: 100%;
   padding: 0rem 5rem 1rem 5rem;
   background-color: #EAEDED;
@@ -93,26 +101,19 @@ h2.textLabel {
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
 }
-.education > form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
 
-.education > form > div {
+.education > form > div,
+.work-experience > form > div,
+.skills > form > div {
   text-align: center;
   padding: 1rem;
 }
 
-.education > form > div > input {
-  margin-right: 1rem;
-}
-.education > form > div > label {
-  margin-right: 0.5rem;
-}
 .education > h1,
 .work-experience > h1,
 .skills > h1 {
+  width: 100%;
+  text-align: left;
   padding-bottom: 1rem;
 }
 
@@ -154,4 +155,49 @@ h2.textLabel {
 }
 .skills {
   padding-bottom: 3rem;
+}
+input, textarea {
+  padding: 0.5rem;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  background-color: inherit;
+  margin-left: 1rem;
+  width: 100%;
+}
+label{
+  margin-left: 1rem;
+}
+input:focus{
+  outline: none;
+  background-color: inherit;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+}
+form > div { 
+  display: flex;
+  align-items: center;
+}
+.add--btn {
+  width: 100%;
+}
+.button--add {
+  width: 7.5rem;
+  height: 2rem;
+  border-radius: 0.25rem;
+  margin-right: 1rem;
+  background-color: rgba(28, 130, 71, 0.5);
+  border: none;
+}
+
+.button--cancel {
+  width: 7.5rem;
+  height: 2rem;
+  border-radius: 0.25rem;
+  margin-right: 1rem;
+  background-color: rgba(231, 77, 60, 0.6);
+  border: none;
 }
