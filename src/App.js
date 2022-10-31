@@ -2,12 +2,17 @@ import './App.css';
 import GenInfo from './components/GenInfo'
 import Header from './components/Header'
 import Education from './components/Education'
+import WorkExperience from './components/WorkExperience'
+import Skills from './components/Skills'
+
 function App() {
   return (
     <div className="App">
       <Header />
       <GenInfo />
-      <Education/>
+      <Education />
+      <WorkExperience />
+      <Skills />
     </div>
   );
 }

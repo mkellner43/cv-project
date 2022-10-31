@@ -14,8 +14,6 @@
   align-items: center;
   justify-content: center;
   width: 70%;
-  background-color: #EAEDED;
-  height: 100%;
 }
 html{
   background-color: #D5D8DC;
@@ -35,11 +33,17 @@ html{
 }
 .general-info {
   display: flex;
+  flex-direction: column;
   position: relative;
   width: 100%;
-  padding: 5em;
-  height: 430px;
-  border-radius: 1rem;
+  padding: 5em 5rem 0rem 5rem;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  background-color: #EAEDED;
+}
+.general-info > section {
+  display: flex;
+  justify-content: space-between;
 }
 .textLabel {
   padding: 0.4rem 0rem;
@@ -69,26 +73,85 @@ h2.name {
   font-weight: 700;
 }
 
-.general-info--right {
-  position: absolute;
-  left: 70rem;
-}
-.general-info--right {
-  position: absolute;
-}
 h2.textLabel {
   font-weight: 700;
   font-size: 25px;
 }
-.general-info--hr {
-  position: absolute;
-  width: 90%;
-  top: 24rem;
-  left: 4rem;
-  right: 4rem;
-  border: 2px dashed black;
-}
-.education {
-  position: relative;
 
+.education,
+.work-experience,
+.skills {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  padding: 0rem 5rem 1rem 5rem;
+  background-color: #EAEDED;
+}
+.skills {
+  margin-bottom: 5rem;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+.education > form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.education > form > div {
+  text-align: center;
+  padding: 1rem;
+}
+
+.education > form > div > input {
+  margin-right: 1rem;
+}
+.education > form > div > label {
+  margin-right: 0.5rem;
+}
+.education > h1,
+.work-experience > h1,
+.skills > h1 {
+  padding-bottom: 1rem;
+}
+
+.button {
+  width: 7.5rem;
+  height: 2rem;
+  border-radius: 0.25rem;
+  margin-right: 1rem;
+}
+.button--icon {
+  padding-right: 0.5rem;
+}
+.form--buttons {
+  display: flex;
+  justify-content: center;
+}
+.education--span,
+.general-info--span,
+.work-experience--span {
+  width: 100%;
+  border: 2px dashed black;
+  height: 0rem;
+  position: relative;
+  margin: 1rem 0rem;
+}
+.contents {
+  display: flex;
+  align-items: center;
+  position: relative;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  margin: 0.2rem 3rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.remove {
+  width: 100%;
+  text-align: right;
+}
+.skills {
+  padding-bottom: 3rem;
 }
