@@ -1,36 +1,65 @@
 import React, { Component } from "react"
+import uniqid from "uniqid"
 
 class Education extends Component {
   constructor(props) {
     super(props)
     this.state = {
       addingContent: false,
+      id: uniqid(),
       school: '',
       from: '',
       to: '',
       degree: '',
       grade: '',
-      educationInfo: []
+      educationInfo: [],
+      editing: false
     }
   }
   handleChange = (e) => {
-    this.setState({
+    this.setState(prevState => ({
       [e.target.name]: e.target.value
-    })
-  }
-
+    }))
+  }    
   handleSubmit = (e) => {
     e.preventDefault()
-    this.setState(prevState => ({
+    this.state.editing ? 
+    this.setState(prevState => {
+      let array = prevState.educationInfo.filter(obj => obj.id !== this.state.id)
+      return {
+        educationInfo: [
+        { 
+          id: prevState.id,
+          school: prevState.school,
+          from: prevState.from,
+          to: prevState.to,
+          degree: prevState.degree,
+          grade: prevState.grade
+        }, ...array
+        ],
+        addingContent: false,
+        editing: false,
+        id: uniqid(),
+        school: '',
+        from: '',
+        to: '',
+        degree: '',
+        grade: ''
+      }
+      })
+      :
+      this.setState(prevState => ({
       educationInfo: [...prevState.educationInfo,
         { 
-          school: this.state.school,
-          from: this.state.from,
-          to: this.state.to,
-          degree: this.state.degree,
-          grade: this.state.grade
+          id: prevState.id,
+          school: prevState.school,
+          from: prevState.from,
+          to: prevState.to,
+          degree: prevState.degree,
+          grade: prevState.grade
         }
       ],
+      id: uniqid(),
       addingContent: false,
       school: '',
       from: '',
@@ -48,7 +77,8 @@ class Education extends Component {
       from: '',
       to: '',
       degree: '',
-      grade: ''
+      grade: '',
+      editing: false
     })
   }
 
@@ -69,8 +99,9 @@ class Education extends Component {
             <p>{info.degree}</p>
             <p>{info.grade}</p>
           </div>
-          <div className="remove">
-            <i className="fa-solid fa-circle-xmark" onClick={this.removeContent} id={indx}></i>
+          <div>
+            <i className="fa-solid fa-pen-to-square" onClick={this.editContent} id={info.id}></i>
+            <i className="fa-solid fa-circle-xmark remove" onClick={this.removeContent} id={info.id}></i>
           </div>
         </div>
       )
@@ -79,17 +110,34 @@ class Education extends Component {
   }
   
   removeContent = (e) => {
-    const index = Number(e.target.id)
+    const id = e.target.id
     this.setState(prevState => {
-      let newState = prevState.educationInfo.filter((_, idx) => idx !== index )
+      let newState = prevState.educationInfo.filter(obj => obj.id !== id )
       return {
       educationInfo: newState
     }})
   }
 
+  editContent = (e) => {
+    const id = e.target.id
+    this.setState(prevState => {
+      let currentObject = prevState.educationInfo.filter((obj) => obj.id === id )
+      return {
+        id: currentObject[0].id,
+        school: currentObject[0].school,
+        from: currentObject[0].from,
+        to: currentObject[0].to,
+        degree: currentObject[0].degree,
+        grade: currentObject[0].grade,
+        addingContent: true,
+        editing: true
+      }
+    })
+  }
+
   createForm = () => {
     let content = this.state.addingContent ?
-    <form>
+    <form id={this.state.id} >
       <div>
         <label htmlFor="school" >Name of University or School</label>
         <input 
@@ -135,7 +183,7 @@ class Education extends Component {
     </div>
       
       <div className="form--buttons">
-        <button className="button--add" onClick={this.handleSubmit}><i className="fa-solid fa-circle-plus button--icon"></i>Save</button>
+        <button id={this.state.id} className="button--add" onClick={this.handleSubmit}><i className="fa-solid fa-circle-plus button--icon"></i>Save</button>
         <button className="button--cancel" onClick={this.handleAbort}><i className="fa-solid fa-ban button--icon"></i>Cancel</button>
       </div>
     </form>

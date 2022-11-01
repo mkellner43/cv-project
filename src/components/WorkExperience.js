@@ -1,10 +1,13 @@
 import React, { Component } from "react";
+import uniqid from "uniqid";
 
 class WorkExperience extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      id: uniqid(),
       addingContent: false,
+      editing: false,
       company: '',
       city: '',
       from: '',
@@ -25,20 +28,47 @@ class WorkExperience extends Component {
       [e.target.name]: e.target.value
     })
   }
-
   handleSubmit = (e) => {
     e.preventDefault()
-    this.setState(prevState => ({
+    this.state.editing ? 
+    this.setState(prevState => {
+      let array = prevState.experienceData.filter(obj => obj.id !== this.state.id)
+      return {
+        experienceData: [
+        { 
+          id: prevState.id,
+          company: prevState.company,
+          city: prevState.city,
+          from: prevState.from,
+          to: prevState.to,
+          role: prevState.role,
+          description: prevState.description
+        }, ...array
+        ],
+        addingContent: false,
+        editing: false,
+        id: uniqid(),
+        company: '',
+        city: '',
+        from: '',
+        to: '',
+        role: '',
+        description: ''
+      }})
+      :
+      this.setState(prevState => ({
       experienceData: [...prevState.experienceData,
         { 
-          company: this.state.company,
-          city: this.state.city,
-          from: this.state.from,
-          to: this.state.to,
-          role: this.state.role,
-          description: this.state.description
+          id: prevState.id,
+          company: prevState.company,
+          city: prevState.city,
+          from: prevState.from,
+          to: prevState.to,
+          role: prevState.role,
+          description: prevState.description
         }
       ],
+      id: uniqid(),
       addingContent: false,
       company: '',
       city: '',
@@ -120,7 +150,7 @@ class WorkExperience extends Component {
       </div>
       
       <div className="form--buttons">
-        <button className="button--add" onClick={this.handleSubmit}><i className="fa-solid fa-circle-plus button--icon"></i>Save</button>
+        <button id={this.state.id} className="button--add" onClick={this.handleSubmit}><i className="fa-solid fa-circle-plus button--icon"></i>Save</button>
         <button className="button--cancel" onClick={this.handleAbort}><i className="fa-solid fa-ban button--icon"></i>Cancel</button>
       </div>
     </form>
@@ -132,8 +162,8 @@ class WorkExperience extends Component {
   }
   createUI = () => {
     let array = this.state.experienceData.map(
-      (info, indx) => (
-        <div key={indx} className='contents'>
+      (info) => (
+        <div key={info.id} className='contents'>
           <div>
             <p>{info.company}</p>
             <p>{info.city}</p>
@@ -146,8 +176,9 @@ class WorkExperience extends Component {
             <p>{info.role}</p>
             <p>{info.description}</p>
           </div>
-          <div className="remove">
-            <i className="fa-solid fa-circle-xmark" onClick={this.removeContent} id={indx}></i>
+          <div>
+            <i className="fa-solid fa-pen-to-square" onClick={this.editContent} id={info.id}></i>
+            <i className="fa-solid fa-circle-xmark remove" onClick={this.removeContent} id={info.id}></i>
           </div>
         </div>
       )
@@ -155,10 +186,29 @@ class WorkExperience extends Component {
     return array
   }
 
-  removeContent = (e) => {
-    const index = Number(e.target.id)
+  editContent = (e) => {
+    const id = e.target.id
     this.setState(prevState => {
-      let newState = prevState.experienceData.filter((_, idx) => idx !== index )
+      let currentObject = prevState.experienceData.filter((obj) => obj.id === id )
+      return {
+        id: currentObject[0].id,
+        company: currentObject[0].company,
+        city: currentObject[0].city,
+        from: currentObject[0].from,
+        to: currentObject[0].to,
+        role: currentObject[0].role,
+        description: currentObject[0].description,
+        addingContent: true,
+        editing: true
+      }
+    })
+  }
+
+
+  removeContent = (e) => {
+    const id = e.target.id
+    this.setState(prevState => {
+      let newState = prevState.experienceData.filter(obj => obj.id !== id )
       return {
       experienceData: newState
     }})

@@ -1,10 +1,14 @@
 import React, { Component } from "react"
+import uniqid from "uniqid"
+
 
 class Skills extends Component {
   constructor(props){
     super(props)
     this.state = {
       addingContent: false,
+      editing: false,
+      id: uniqid(),
       skill: '',
       skills: []
     }
@@ -22,12 +26,30 @@ class Skills extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.setState(prevState => ({
+    this.state.editing ? 
+    this.setState(prevState => {
+      let array = prevState.skills.filter(obj => obj.id !== this.state.id)
+      return {
+        skills: [
+        { 
+          id: prevState.id,
+          skill: prevState.skill
+        }, ...array
+        ],
+        addingContent: false,
+        editing: false,
+        id: uniqid(),
+        skill: ''
+      }})
+      :
+      this.setState(prevState => ({
       skills: [...prevState.skills,
         { 
-          skill: this.state.skill
+          id: prevState.id,
+          skill: prevState.skill
         }
       ],
+      id: uniqid(),
       addingContent: false,
       skill: ''
     }))
@@ -42,9 +64,9 @@ class Skills extends Component {
   }
 
   removeContent = (e) => {
-    const index = Number(e.target.id)
+    const id = e.target.id
     this.setState(prevState => {
-      let newState = prevState.skills.filter((_, idx) => idx !== index )
+      let newState = prevState.skills.filter(obj => obj.id !== id )
       return {
       skills: newState
     }})
@@ -64,7 +86,7 @@ class Skills extends Component {
       </div>
       
       <div className="form--buttons">
-        <button className="button--add" onClick={this.handleSubmit}><i className="fa-solid fa-circle-plus button--icon"></i>Save</button>
+        <button id={this.state.id} className="button--add" onClick={this.handleSubmit}><i className="fa-solid fa-circle-plus button--icon"></i>Save</button>
         <button className="button--cancel" onClick={this.handleAbort}><i className="fa-solid fa-ban button--icon"></i>Cancel</button>
       </div>
     </form>
@@ -77,18 +99,32 @@ class Skills extends Component {
 
   createUI = () => {
     let array = this.state.skills.map(
-      (info, indx) => (
-        <div key={indx} className="contents">
+      (info) => (
+        <div key={info.id} className="contents">
           <div>
             <p>{info.skill}</p>
           </div>
-          <div className="remove">
-            <i className="fa-solid fa-circle-xmark" onClick={this.removeContent} id={indx}></i>
+          <div>
+            <i className="fa-solid fa-pen-to-square" onClick={this.editContent} id={info.id}></i>
+            <i className="fa-solid fa-circle-xmark remove" onClick={this.removeContent} id={info.id}></i>
           </div>
         </div>
       )
     )
     return array
+  }
+
+  editContent = (e) => {
+    const id = e.target.id
+    this.setState(prevState => {
+      let currentObject = prevState.skills.filter((obj) => obj.id === id )
+      return {
+        id: currentObject[0].id,
+        skill: currentObject[0].skill,
+        addingContent: true,
+        editing: true
+      }
+    })
   }
 
   render() {

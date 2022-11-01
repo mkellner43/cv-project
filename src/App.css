@@ -26,6 +26,7 @@ html{
   height: 150px;
   background-color: #D5D8DC;
   width: 100%;
+  font-size: 20px;
 }
 .header > i, 
 .header > h1 {
@@ -101,14 +102,12 @@ h2.textLabel {
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
 }
-
 .education > form > div,
 .work-experience > form > div,
 .skills > form > div {
   text-align: center;
   padding: 1rem;
 }
-
 .education > h1,
 .work-experience > h1,
 .skills > h1 {
@@ -116,7 +115,6 @@ h2.textLabel {
   text-align: left;
   padding-bottom: 1rem;
 }
-
 .button {
   width: 7.5rem;
   height: 2rem;
@@ -134,7 +132,7 @@ h2.textLabel {
 .general-info--span,
 .work-experience--span {
   width: 100%;
-  border: 2px dashed black;
+  border: 1px dashed black;
   height: 0rem;
   position: relative;
   margin: 1rem 0rem;
@@ -142,17 +140,20 @@ h2.textLabel {
 .contents {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   position: relative;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
   margin: 0.2rem 3rem;
   padding-left: 1rem;
   padding-right: 1rem;
-}
-.remove {
   width: 100%;
-  text-align: right;
 }
+.contents > div {
+  display: flex;
+}
+.contents > div > p {
+  padding: 1rem;
+}
+
 .skills {
   padding-bottom: 3rem;
 }
@@ -160,7 +161,7 @@ input, textarea {
   padding: 0.5rem;
   border: 1px solid black;
   border-radius: 0.5rem;
-  background-color: inherit;
+  background-color: #EAEDED;
   margin-left: 1rem;
   width: 100%;
 }
@@ -169,7 +170,7 @@ label{
 }
 input:focus{
   outline: none;
-  background-color: inherit;
+  background-color: #EAEDED;
 }
 form {
   display: flex;
@@ -192,7 +193,6 @@ form > div {
   background-color: rgba(28, 130, 71, 0.5);
   border: none;
 }
-
 .button--cancel {
   width: 7.5rem;
   height: 2rem;
@@ -201,8 +201,23 @@ form > div {
   background-color: rgba(231, 77, 60, 0.6);
   border: none;
 }
-
 a {
   color: black;
-  
+}
+.remove {
+  margin-left: 1rem;
+}
+
+@media only screen and (max-width: 1200px) {
+  .App{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  form > div {
+    display: flex;
+    flex-direction: column;
+  }
 }
