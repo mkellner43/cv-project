@@ -4,16 +4,11 @@
   font-family: Inter, sans-serif;
   box-sizing: border-box;
 }
-#root {
-  display: flex;
-  justify-content: center;
-}
 .App {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 70%;
 }
 html{
   background-color: #D5D8DC;
@@ -35,9 +30,12 @@ html{
 .general-info {
   display: flex;
   flex-direction: column;
-  position: relative;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
   width: 100%;
-  padding: 5em 5rem 0rem 5rem;
+  max-width: 1000px;
+  min-width: 300px;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
   background-color: #EAEDED;
@@ -47,35 +45,31 @@ html{
   justify-content: space-between;
 }
 .textLabel {
-  padding: 0.4rem 0rem;
   border-radius: 0.5rem;
   font-weight: 500;
   font-size: 20px;
   background-color: inherit;
-  width: 13rem;
-  height: 3rem;
+  padding: 1rem;
   margin: 0;
 }
 input.name:focus {
   outline: none;
-  width: 12rem;
-  margin-top: -4px;
-  margin-left: -20px;
-  margin-bottom: 4px;
+  border: none;
   font-size: 25px;
   font-weight: 700;
+  width: 12rem;
+
 }
 
 input.textLabel:focus {
   outline: none;
+  border: none;
   width: 12rem;
-  margin-top: -4px;
-  margin-left: -20px;
-  margin-bottom: 4px;
-  height: 3rem;
 }
 
 h2.textLabel {
+  display: flex;
+  align-items: center;
   font-weight: 700;
   font-size: 25px;
 }
@@ -83,8 +77,7 @@ h2.textLabel {
 .general-info--right {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: left;
+  width: 30%;
 }
 .education,
 .work-experience,
@@ -93,8 +86,10 @@ h2.textLabel {
   flex-direction: column;
   position: relative;
   align-items: center;
+  padding: 1rem;
   width: 100%;
-  padding: 0rem 5rem 1rem 5rem;
+  max-width: 1000px;
+  min-width: 300px;
   background-color: #EAEDED;
 }
 .skills {
@@ -112,7 +107,7 @@ h2.textLabel {
 .work-experience > h1,
 .skills > h1 {
   width: 100%;
-  text-align: left;
+  text-align: center;
   padding-bottom: 1rem;
 }
 .button {
@@ -137,39 +132,25 @@ h2.textLabel {
   position: relative;
   margin: 1rem 0rem;
 }
-.contents {
+.content {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
-  margin: 0.2rem 3rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
   width: 100%;
+  max-width: 800px;
 }
-.contents > div {
-  display: flex;
-}
-.contents > div > p {
-  padding: 1rem;
-}
-
 .skills {
   padding-bottom: 3rem;
 }
 input, textarea {
-  padding: 0.5rem;
   border: 1px solid black;
   border-radius: 0.5rem;
   background-color: #EAEDED;
-  margin-left: 1rem;
   width: 100%;
+  padding: 0.5rem;
 }
 label{
-  margin-left: 1rem;
+  margin: 1rem;
 }
 input:focus{
-  outline: none;
   background-color: #EAEDED;
 }
 form {
@@ -189,7 +170,7 @@ form > div {
   width: 7.5rem;
   height: 2rem;
   border-radius: 0.25rem;
-  margin-right: 1rem;
+  margin: 1rem;
   background-color: rgba(28, 130, 71, 0.5);
   border: none;
 }
@@ -197,7 +178,7 @@ form > div {
   width: 7.5rem;
   height: 2rem;
   border-radius: 0.25rem;
-  margin-right: 1rem;
+  margin: 1rem;
   background-color: rgba(231, 77, 60, 0.6);
   border: none;
 }
@@ -207,17 +188,36 @@ a {
 .remove {
   margin-left: 1rem;
 }
+.contents {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  margin: 0.2rem 3rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  width: 100%;
+}
+.contents > div {
+  display: flex;
+}
+.contents > div > p {
+  padding: 1rem;
+}
 
-@media only screen and (max-width: 1200px) {
-  .App{
-    display: flex;
+@media screen and (max-width: 500px) {
+  .content {
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
+    padding: 2rem;
   }
-  form > div {
-    display: flex;
+  .education > form > div,
+  .work-experience > form > div,
+  .skills > form > div {
     flex-direction: column;
+    padding: 0;
+  }
+  .general-info--left,
+  .general-info--right{
+    width: 100%;
   }
 }
