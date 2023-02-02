@@ -63,6 +63,7 @@ input.name:focus {
 input.name,
 input.textLabel {
   outline: none;
+  border: none;
 }
 
 input.textLabel:focus {
