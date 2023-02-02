@@ -16,10 +16,8 @@ class InfoLable extends Component {
     }))
   }
   handleChange = (e) => {
-    let value;
-    e.target.value ==='' ? value = this.state.default : value = e.target.value
     this.setState({
-      text: value
+      text: e.target.value
     })
   }
   handleBlur = () => {
@@ -38,7 +36,7 @@ class InfoLable extends Component {
         className={this.props.className}
       />
       :
-      <this.state.tag className={this.props.className} onClick={this.handleClick}>{this.state.text}</this.state.tag>
+      <this.state.tag className={this.props.className} onClick={this.handleClick}>{this.state.text === '' ? this.state.default : this.state.text}</this.state.tag>
     )
   }
 }

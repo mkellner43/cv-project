@@ -60,6 +60,10 @@ input.name:focus {
   width: 12rem;
 
 }
+input.name,
+input.textLabel {
+  outline: none;
+}
 
 input.textLabel:focus {
   outline: none;
